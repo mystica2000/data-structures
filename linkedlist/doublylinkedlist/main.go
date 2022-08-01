@@ -36,24 +36,37 @@ func (l *DoublyLinkedList) append(val int) {
 	}
 }
 
-func (l *DoublyLinkedList) printFirst() {
+func (l *DoublyLinkedList) printFirst() string {
 	temp := l.head
 
+	str := ""
 	for temp != nil {
 		fmt.Printf("%d -> ",temp.val)
+
+		str = str + fmt.Sprintf("%d -> ",temp.val)
 		temp = temp.next;
 	}
 	fmt.Printf("nil")
+	str = str + "nil"
+	return str;
 }
 
-func (l *DoublyLinkedList) printLast() {
+func (l *DoublyLinkedList) printLast() string {
 	temp := l.last;
+
+	str := ""
 
 	for temp!=nil {
 		fmt.Printf("%d -> ",temp.val)
+
+		str = str + fmt.Sprintf("%d -> ",temp.val)
 		temp = temp.prev;
 	}
 	fmt.Printf("nil")
+
+	str = str + "nil"
+
+	return str
 }
 
 func(l *DoublyLinkedList) remove(val int) {
@@ -92,23 +105,23 @@ func main() {
 	dll := new(DoublyLinkedList)
 
 	dll.append(1)
-	
+
 	dll.append(2)
 	dll.append(3)
 	dll.append(4)
 	dll.append(5)
 
-	
+
 	fmt.Println("Print First")
 	dll.printFirst()
 
 	fmt.Println("\n REMOVE")
 	dll.remove(1)
-	
+
 	dll.remove(2)
 
 	 dll.remove(3)
-	
+
 	 dll.remove(5)
 	dll.printFirst()
 

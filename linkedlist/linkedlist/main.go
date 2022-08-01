@@ -13,7 +13,7 @@ type LinkedList struct {
 	head *Node;
 }
 
-func(l *LinkedList) add(val int) {
+func(l *LinkedList) Add(val int) {
 	temp := &Node{val:val}
 	if(l.head == nil) {
 		l.head = temp
@@ -27,11 +27,11 @@ func(l *LinkedList) add(val int) {
 }
 
 
-func(l *LinkedList) delete(val int) {
-	
+func(l *LinkedList) Delete(val int) {
+
 	var previous *Node;
 
-	if(l.head.val == val) { // if first value 
+	if(l.head.val == val) { // if first value
 		l.head = l.head.next;
 		return;
 	}
@@ -45,23 +45,27 @@ func(l *LinkedList) delete(val int) {
 	}
 }
 
-func(l LinkedList) print() {
+func(l LinkedList) Print() string {
 	iterator := l.head;
 
+	str := ""
 	fmt.Println()
 	for iterator!=nil {
 		fmt.Printf("%d -> ",iterator.val);
+		str = str + fmt.Sprintf("%d",iterator.val) + " -> "
 		iterator = iterator.next;
 	}
 	fmt.Printf("nil")
+	str = str + "nil"
+	return str
 }
 
-func(l LinkedList) length() int{
+func(l LinkedList) Length() int{
 	iterator := l.head;
 
 	len := 0
 
-	for iterator.next!=nil {
+	for iterator!=nil {
 		len += 1;
 		iterator = iterator.next;
 	}
@@ -69,7 +73,7 @@ func(l LinkedList) length() int{
 	return len;
 }
 
-func(l *LinkedList) sort() *Node{
+func(l *LinkedList) Sort() *Node{
    return l.sortListHelper(l.head)
 }
 
@@ -115,7 +119,7 @@ func mergeSortedLists(first *Node,second *Node) *Node {
 
 
 func(l *LinkedList) findMidPoint(head *Node) *Node{
-	
+
 	if (head == nil || head.next == nil) { // if linked list contains one or two or empty elements
 		return head;
 	}
@@ -130,7 +134,7 @@ func(l *LinkedList) findMidPoint(head *Node) *Node{
 			break;
 		}
 
-		fastPtr = fastPtr.next; // move two steps 
+		fastPtr = fastPtr.next; // move two steps
 		slowPtr = slowPtr.next; // move one step
 	}
 	return slowPtr;
@@ -140,21 +144,21 @@ func(l *LinkedList) findMidPoint(head *Node) *Node{
 func main() {
 	var list LinkedList;
 
-	list.add(10);
-	list.add(20);
-	list.add(70);
-	
-	list.add(30);
-	list.add(40);
-	list.add(50);
-	list.add(60);
+	list.Add(10);
+	list.Add(20);
+	list.Add(70);
 
-	list.print()
+	list.Add(30);
+	list.Add(40);
+	list.Add(50);
+	list.Add(60);
 
-	fmt.Println("\n Length of the LIST ",list.length())	
+	list.Print()
+
+	fmt.Println("\n Length of the LIST ",list.Length())
 
 
-	list.head = list.sort()
+	list.head = list.Sort()
 
-	list.print()
+	list.Print()
 }

@@ -24,7 +24,7 @@ func (l *CircularLinkedList) append(val int) {
 		// newNode's next is head again due to circular linkedlist
 		newNode.next = l.head;
 	} else {
-		// if head is not null, traverse to the end of the list and add it 
+		// if head is not null, traverse to the end of the list and add it
 		temp := l.head;
 		firstNode := l.head
 
@@ -34,28 +34,35 @@ func (l *CircularLinkedList) append(val int) {
 		}
 
 		// temp has last node now :)
-		
+
 		// newNode's Next is head of the list
 		// last's node next is now newNode (NEWNODE BECOME LAST NODE \o/)
 		newNode.next = l.head;
 		temp.next = newNode;
-		
+
 	}
 }
 
-func(l CircularLinkedList) display() {
+func(l CircularLinkedList) display() string {
 	temp := l.head;
+	firstNode := -1;
 
-	firstNode := l.head.val;
+	if(l.head!=nil) {
+		firstNode = l.head.val;
+	}
+	str := ""
 
 	for temp!= nil {
 		fmt.Printf(" %d ->",temp.val)
+		str = str + fmt.Sprintf("%d -> ",temp.val)
 		temp = temp.next;
 		if(firstNode == temp.val) {
 			fmt.Println(" nil")
-			return;
+			str = str + "nil";
+			return str;
 		}
 	}
+	return "nil"
 }
 
 func(l *CircularLinkedList) remove(val int) {
@@ -63,14 +70,18 @@ func(l *CircularLinkedList) remove(val int) {
 	// if head is nil, STOP!
 	if(l.head==nil) {
 		return;
-	} else if(l.head.val == val) { // if head's val is val then check if next node of head is null or not, 
-	    // if null -> head is null
-		// if not null -> head point to next node of the head (REMOVED TADA!)
-		if(l.head.next!=nil){
-		l.head = l.head.next;
-	    } else {
-			l.head = nil;
+	} else if(l.head.next == l.head) {
+		l.head = nil;
+	} else if(l.head.val == val) { // if head's val is val then check if next node of head is null or not,
+	// if not null -> head point to next node of the head (REMOVED TADA!)
+
+		temp := l.head;
+		firstNode := temp;
+		for temp.next != firstNode {
+				temp = temp.next;
 		}
+		temp.next = l.head.next;
+		l.head = temp.next;
 	} else { // if head is not first node
 		// traverse the list and find out!
 		temp := l.head;
@@ -98,25 +109,26 @@ func(l *CircularLinkedList) remove(val int) {
 
 
 
+
 func main() {
 	fmt.Println("Started")
 
 	cll := new(CircularLinkedList)
 
 	cll.append(1);
-	
+
 	cll.append(2);
-	
+
 	cll.append(3);
-	
+
 	cll.append(4);
-	
+
 	cll.append(5);
 
-	//cll.remove(1);
-
-	//cll.remove(2);
-
+	cll.remove(1);
+    cll.remove(2);
+    cll.remove(3);
+	cll.remove(4);
 	cll.remove(5);
 	cll.display();
 }

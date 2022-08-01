@@ -6,7 +6,7 @@
    - :white_check_mark: Doubly Linked List
 
 - :white_large_square: Stack
-   - :white_check_mark: array (Testing [ ])
+   - :white_check_mark: array (Testing :x:)
    - :white_large_square: linked List
    - :white_large_square: min stack
    - :white_large_square: max stack
@@ -38,3 +38,5 @@
 
 - :white_large_square: Graph
     ... More to be added!
+
+
